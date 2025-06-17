@@ -1,5 +1,5 @@
 export async function Signup (req, res) {
-    res.send("Signup Route");
+    const {emial,password,fullName} = req.body;
 }
 
 export async function Login (req, res) {
