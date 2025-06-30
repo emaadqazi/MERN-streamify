@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unioque: true,
+        unique: true,
     },
     password: {
         type: String,
@@ -38,15 +38,13 @@ const userSchema = new mongoose.Schema({
     },
     friends: [
         {
-            type: mongoose.Schenma.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         }
     ],
 }, 
 {timestamps:true}
 ); 
-
-const User = mongoose.model("User", userSchema);
 
 // Making the pre hook and hashing the password for User
 userSchema.pre("save", async function(next) {
@@ -62,5 +60,7 @@ userSchema.pre("save", async function(next) {
         next(error)
     }
 });
+
+const User = mongoose.model("User", userSchema);
 
 export default User;
